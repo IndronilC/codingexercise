@@ -71,6 +71,7 @@ public class CodingexerciseApplication {
 	public void saveTweets(Tweets tweets, JsonFileReadService jsonFileReadService ){
      TweetsEntity tweetsEntity = modelMapper().map(tweets, TweetsEntity.class);
 	 UsersEntity userEntity = modelMapper().map(tweets.getUser(), UsersEntity.class);
+	 userEntity.setTweetsEntity(tweetsEntity);
 	 tweetsEntity.setUsersEntity(userEntity);
 	 jsonFileReadService.save(tweetsEntity);
 	}
