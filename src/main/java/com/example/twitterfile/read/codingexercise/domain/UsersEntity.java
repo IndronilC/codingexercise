@@ -1,6 +1,7 @@
 package com.example.twitterfile.read.codingexercise.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,22 +26,25 @@ public class UsersEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="user_id")
     private Long Id;
-    @JsonProperty("userId")
-    private int userId;
-    @JsonProperty("id_str")
+   @Column(name = "user_data_Id")
+    private int userDataId;
+   @Column(name = "id_str")
     private String idStr;
-    @JsonProperty("name")
+   @Column(name = "user_name")
     private String userName;
-    @JsonProperty("screen_name")
+   @Column(name = "screen_name")
     private String screenName;
-    @JsonProperty("location")
+    @Column(name = "location")
     private String location;
-    @JsonProperty("description")
+    @Column(name = "description")
     private String description;
+    @Column(name = "url")
     private String url;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", referencedColumnName = "id", nullable = false)
+    @MapsId
+    @JoinColumn(name = "tweets_id")
     private TweetsEntity tweetsEntity;
 
 
